@@ -3,9 +3,14 @@ var User = require('../models/user');
 var config = require('../config');
 var jwt = require('jsonwebtoken');
 var mongoose = require('mongoose'),
+    app = express(),
+    bodyParser = require('body-parser'),
     bcrypt = require('bcrypt');
 
 const saltRounds = config.saltRounds;
+
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
 
 var router = express.Router();
 
@@ -24,17 +29,20 @@ router.post('/signup', function (req, res) {
                 token: null
             })
         } else {
-            console.log('ok');
+            req.session.uname = req.body.uname;
+            console.log(req.body);
             var hashed = bcrypt.hashSync(req.body.password, 8);
             var newUser = new User({
                 uname: req.body.uname,
+                /*
                 name: {
                     firstName: req.body.name.firstName,
                     middleName: req.body.name.middleName,
                     lastName: req.body.name.lastName
-                },
+                },*/
                 password: hashed,
                 debitAccount: req.body.debitAccount,
+                /*
                 creditAccount: {
                     accountNumber: req.body.creditAccount.accountNumber,
                     maxCredit: req.body.creditAccount.maxCredit,
@@ -44,7 +52,7 @@ router.post('/signup', function (req, res) {
                 }, security: {
                     question: req.body.security.question,
                     answer: req.body.security.question
-                },
+                },*/
                 balance: {
                     debit: req.body.balance.debit,
                     credit: req.body.balance.credit
@@ -85,6 +93,8 @@ router.post('/login', function (req, res) {
                     var token = jwt.sign({ foo: "bar" }, config.secret, {
                         expiresIn: 1440
                     });
+                    req.session.uname = req.body.uname;
+                    console.log(req.session.uname)
                     res.json({
                         succes: true,
                         message: 'Enjoy your Token',

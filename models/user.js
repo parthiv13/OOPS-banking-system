@@ -28,5 +28,6 @@ module.exports = mongoose.model('User', new Schema({
     balance: {
         debit: Number,
         credit: Number
-    }
+    },
+    transactions: Array
 }))
