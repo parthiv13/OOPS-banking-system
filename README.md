@@ -1,4 +1,4 @@
-# OOPS-banking-system
+# Banking System: Backend
 A small Backend project that duplicates the various functionalities used in any banking server systems, such as signup/login a user, perform a transaction password change, balance check, and also perform transactions to different accounts.
 
 JWTs are used for token signing/verification to maintain the authenticity of each request.
