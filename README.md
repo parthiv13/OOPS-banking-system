@@ -6,8 +6,8 @@ JWTs are used for token signing/verification to maintain the authenticity of eac
 ### User Schema:
 ```javascript
 uname: String,
- name: {
- firstName: String,
+name: {
+    firstName: String,
     middleName: String,
     lastName: String
 },
@@ -23,9 +23,9 @@ creditAccount: {
     interest: Number
 },
 password: String,
-    security: {
+security: {
     question: String,
-        answer: String
+    answer: String
 },
 balance: {
     debit: Number,
