@@ -34,7 +34,7 @@ balance: {
 transactions: Array
 ```
 
-### All the request urls
+### Request urls
 
 **All are POST requests**
 
